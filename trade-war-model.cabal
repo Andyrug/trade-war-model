@@ -1,0 +1,69 @@
+cabal-version:      2.4
+name:               trade-war-model
+version:            0.1.0.0
+synopsis:           Game theory model for analyzing trade wars
+description:        A Haskell implementation of game theory models to analyze trade war strategies and outcomes
+license:            MIT
+license-file:       LICENSE
+author:             Trade War Analyst
+maintainer:         example@example.com
+category:           Game Theory
+build-type:         Simple
+extra-doc-files:    README.md
+
+common warnings
+    ghc-options: -Wall
+
+library
+    import:           warnings
+    exposed-modules:  TradeWar.Model
+                    , TradeWar.Strategy
+                    , TradeWar.Simulation
+                    , TradeWar.Types
+                    , TradeWar.Equilibrium
+                    , TradeWar.StrategyCombinators
+    build-depends:    base >=4.14 && <5
+                    , containers
+                    , random
+                    , mtl
+                    , text
+                    , MonadRandom
+    hs-source-dirs:   src
+    default-language: Haskell2010
+
+executable trade-war-sim
+    import:           warnings
+    main-is:          Main.hs
+    build-depends:    base >=4.14 && <5
+                    , trade-war-model
+                    , containers
+                    , text
+    hs-source-dirs:   app
+    default-language: Haskell2010
+
+test-suite trade-war-test
+    import:           warnings
+    default-language: Haskell2010
+    type:             exitcode-stdio-1.0
+    hs-source-dirs:   test
+    main-is:          Spec.hs
+    build-depends:    base >=4.14 && <5
+                    , trade-war-model
+                    , hspec
+                    , QuickCheck
+                    , containers
+                    , text
+
+test-suite strategy-combinator-test
+    import:           warnings
+    default-language: Haskell2010
+    type:             exitcode-stdio-1.0
+    hs-source-dirs:   test
+    main-is:          StrategyCombinatorSpec.hs
+    build-depends:    base >=4.14 && <5
+                    , trade-war-model
+                    , hspec
+                    , QuickCheck
+                    , containers
+                    , text
+                    , MonadRandom 
