@@ -22,7 +22,7 @@ The simulation allows users to:
 - Calculate payoffs based on economic outcomes
 - Find Nash equilibria and Pareto optimal outcomes
 
-### Strategy System
+### Strategy System 
 - Built-in strategies (tit-for-tat, aggressive, defensive, negotiation)
 - Compositional strategy building with combinators
 - Strategy evaluation and comparison
@@ -269,3 +269,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Game theory concepts based on works by John Nash, Thomas Schelling, and Robert Axelrod
 - Economic modeling inspired by research from the World Trade Organization and International Monetary Fund
 - Special thanks to the Haskell community for providing excellent libraries and tools 
+- This project is dedicated to the memory of my Father Dr. David Michael Kuhlman PhD aka Mike.  Dad was a Social Psychologist concerned with choice in social dilemmas, social judgment, interpersonal trust, and emotion. Game theory was one of his passions and one of my earliest memories is of him explaing the Prisoners Dilema and utility.
