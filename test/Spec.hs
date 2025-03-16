@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -F -pgmF hspec-discover #-}
+
 import Test.Hspec
 import Test.QuickCheck
 import qualified Data.Map as M

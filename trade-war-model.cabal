@@ -16,18 +16,58 @@ common warnings
 
 library
     import:           warnings
-    exposed-modules:  TradeWar.Model
-                    , TradeWar.Strategy
-                    , TradeWar.Simulation
-                    , TradeWar.Types
-                    , TradeWar.Equilibrium
-                    , TradeWar.StrategyCombinators
+    exposed-modules:  
+                   -- Core types
+                     TradeWar.Types
+                   
+                   -- Model components
+                   , TradeWar.Model
+                   , TradeWar.Model.Core
+                   , TradeWar.Model.Tariffs
+                   , TradeWar.Model.Trade
+                   , TradeWar.Model.Payoffs
+                   
+                   -- Strategy components
+                   , TradeWar.Strategy
+                   , TradeWar.Strategy.Core
+                   , TradeWar.Strategy.Primitives
+                   , TradeWar.Strategy.Combinators
+                   , TradeWar.Strategy.Conditional
+                   , TradeWar.Strategy.Random
+                   
+                   -- DSL components
+                   , TradeWar.DSL.AST
+                   , TradeWar.DSL.Parser
+                   , TradeWar.DSL.Parser.Core
+                   , TradeWar.DSL.Parser.Primitives
+                   , TradeWar.DSL.Parser.Combinators
+                   , TradeWar.DSL.Parser.Conditional
+                   , TradeWar.DSL.Parser.Random
+                   , TradeWar.DSL.Interpreter
+                   
+                   -- Simulation components
+                   , TradeWar.Simulation
+                   , TradeWar.Simulation.Core
+                   , TradeWar.Simulation.Runner
+                   , TradeWar.Simulation.Analysis
+                   
+                   -- Equilibrium components
+                   , TradeWar.Equilibrium
+                   , TradeWar.Equilibrium.Core
+                   , TradeWar.Equilibrium.Nash
+                   , TradeWar.Equilibrium.Pareto
+                   
+                   -- Legacy modules (for backward compatibility)
+                   , TradeWar.StrategyCombinators
+                   , TradeWar.StrategyDSL
+                   , TradeWar.StrategyParser
     build-depends:    base >=4.14 && <5
-                    , containers
-                    , random
-                    , mtl
-                    , text
-                    , MonadRandom
+                   , containers
+                   , text
+                   , random
+                   , MonadRandom
+                   , megaparsec >= 9.0
+                   , parser-combinators
     hs-source-dirs:   src
     default-language: Haskell2010
 
@@ -41,18 +81,35 @@ executable trade-war-sim
     hs-source-dirs:   app
     default-language: Haskell2010
 
+executable test-parser
+    import:           warnings
+    main-is:          TestParser.hs
+    build-depends:    base >=4.14 && <5
+                    , trade-war-model
+                    , text
+                    , megaparsec >= 9.0
+    hs-source-dirs:   app
+    default-language: Haskell2010
+
 test-suite trade-war-test
     import:           warnings
     default-language: Haskell2010
     type:             exitcode-stdio-1.0
     hs-source-dirs:   test
     main-is:          Spec.hs
+    other-modules:    StrategyDSLSpec
+                   , StrategyCombinatorSpec
+                   , StrategyParserSpec
     build-depends:    base >=4.14 && <5
                     , trade-war-model
                     , hspec
+                    , hspec-discover
                     , QuickCheck
                     , containers
                     , text
+                    , MonadRandom
+                    , megaparsec >= 9.0
+                    , parser-combinators
 
 test-suite strategy-combinator-test
     import:           warnings
@@ -63,6 +120,7 @@ test-suite strategy-combinator-test
     build-depends:    base >=4.14 && <5
                     , trade-war-model
                     , hspec
+                    , hspec-discover
                     , QuickCheck
                     , containers
                     , text

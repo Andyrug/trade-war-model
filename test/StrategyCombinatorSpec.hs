@@ -1,4 +1,4 @@
-module Main where
+module StrategyCombinatorSpec (spec) where
 
 import Test.Hspec
 import Test.QuickCheck
@@ -13,8 +13,8 @@ import TradeWar.Strategy
 import TradeWar.Simulation
 import TradeWar.StrategyCombinators
 
-main :: IO ()
-main = hspec $ do
+spec :: Spec
+spec = do
     describe "Strategy Combinators" $ do
         it "can construct a tit-for-tat strategy using combinators" $ do
             let us = createTestCountry "US"
